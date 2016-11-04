@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+
+var ref: FIRDatabaseReference!
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -16,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FIRApp.configure()
+        
+        ref = FIRDatabase.database().reference()
+        
         return true
     }
 
