@@ -79,7 +79,6 @@
 				0C4BCEF71DCD106E00E68187 /* Assets.xcassets */,
 				0C4BCEF91DCD106E00E68187 /* LaunchScreen.storyboard */,
 				0C4BCEFC1DCD106E00E68187 /* Info.plist */,
-				0C4BCF041DCD16A300E68187 /* GameViewController.swift */,
 				5F16D4521DCD4709001CECE4 /* PlaylistsTableViewCell.swift */,
 			);
 			path = TrivialMusic;
@@ -97,6 +96,7 @@
 		5FE64C7B1DCD24E30002BFA2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0C4BCF041DCD16A300E68187 /* GameViewController.swift */,
 				5FE64C751DCD22F50002BFA2 /* RankingViewController.swift */,
 				5FE64C7C1DCD25100002BFA2 /* PlaylistViewController.swift */,
 			);
