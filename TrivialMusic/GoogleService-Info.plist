@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>453674125064-2145hecplknf8l2b1fj7ghgv7eip4kek.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.453674125064-2145hecplknf8l2b1fj7ghgv7eip4kek</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDB2uufMc6Id3rKwQg5wxIXdIbDoDgP9rk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>453674125064</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.alcapone.TrivialMusic</string>
+	<key>PROJECT_ID</key>
+	<string>music-525ed</string>
+	<key>STORAGE_BUCKET</key>
+	<string>music-525ed.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:453674125064:ios:2d60b291e00d3d8b</string>
+	<key>DATABASE_URL</key>
+	<string>https://music-525ed.firebaseio.com</string>
+</dict>
+</plist>
