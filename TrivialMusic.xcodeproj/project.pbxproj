@@ -12,6 +12,7 @@
 		0C4BCEF61DCD106E00E68187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF41DCD106E00E68187 /* Main.storyboard */; };
 		0C4BCEF81DCD106E00E68187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF71DCD106E00E68187 /* Assets.xcassets */; };
 		0C4BCEFB1DCD106E00E68187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF91DCD106E00E68187 /* LaunchScreen.storyboard */; };
+		C06B4C096675B586E67A022B /* Pods_TrivialMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC442B747389069D8ACBC79 /* Pods_TrivialMusic.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		0C4BCEF71DCD106E00E68187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C4BCEFA1DCD106E00E68187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C4BCEFC1DCD106E00E68187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		139E9C69F26FBD63C8C4D18A /* Pods-TrivialMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrivialMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrivialMusic/Pods-TrivialMusic.release.xcconfig"; sourceTree = "<group>"; };
+		A958563C4757BA6C473C00DB /* Pods-TrivialMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrivialMusic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrivialMusic/Pods-TrivialMusic.debug.xcconfig"; sourceTree = "<group>"; };
+		EEC442B747389069D8ACBC79 /* Pods_TrivialMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrivialMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06B4C096675B586E67A022B /* Pods_TrivialMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				0C4BCEEF1DCD106E00E68187 /* TrivialMusic */,
 				0C4BCEEE1DCD106E00E68187 /* Products */,
+				35921B5DF445EF262F50486A /* Pods */,
+				AEE5925849E201A42EDA6C19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = TrivialMusic;
 			sourceTree = "<group>";
 		};
+		35921B5DF445EF262F50486A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A958563C4757BA6C473C00DB /* Pods-TrivialMusic.debug.xcconfig */,
+				139E9C69F26FBD63C8C4D18A /* Pods-TrivialMusic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AEE5925849E201A42EDA6C19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EEC442B747389069D8ACBC79 /* Pods_TrivialMusic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C4BCEFF1DCD106E00E68187 /* Build configuration list for PBXNativeTarget "TrivialMusic" */;
 			buildPhases = (
+				18C5013E9A5EBA45EF2ED50F /* [CP] Check Pods Manifest.lock */,
 				0C4BCEE91DCD106E00E68187 /* Sources */,
 				0C4BCEEA1DCD106E00E68187 /* Frameworks */,
 				0C4BCEEB1DCD106E00E68187 /* Resources */,
+				80BE5025B0E8DFB018CB0ACF /* [CP] Embed Pods Frameworks */,
+				D5FEC2E89F9A83004C91FF13 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18C5013E9A5EBA45EF2ED50F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		80BE5025B0E8DFB018CB0ACF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrivialMusic/Pods-TrivialMusic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5FEC2E89F9A83004C91FF13 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrivialMusic/Pods-TrivialMusic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C4BCEE91DCD106E00E68187 /* Sources */ = {
@@ -258,6 +333,7 @@
 		};
 		0C4BCF001DCD106E00E68187 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A958563C4757BA6C473C00DB /* Pods-TrivialMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TrivialMusic/Info.plist;
@@ -270,6 +346,7 @@
 		};
 		0C4BCF011DCD106E00E68187 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 139E9C69F26FBD63C8C4D18A /* Pods-TrivialMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TrivialMusic/Info.plist;
@@ -299,6 +376,7 @@
 				0C4BCF011DCD106E00E68187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

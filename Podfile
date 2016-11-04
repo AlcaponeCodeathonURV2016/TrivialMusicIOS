@@ -6,5 +6,6 @@ target 'TrivialMusic' do
   use_frameworks!
 
   # Pods for TrivialMusic
+  pod 'Firebase/Core'
 
 end
