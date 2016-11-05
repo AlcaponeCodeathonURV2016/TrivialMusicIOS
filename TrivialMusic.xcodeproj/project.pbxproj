@@ -13,6 +13,7 @@
 		0C4BCEF81DCD106E00E68187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF71DCD106E00E68187 /* Assets.xcassets */; };
 		0C4BCEFB1DCD106E00E68187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF91DCD106E00E68187 /* LaunchScreen.storyboard */; };
 		0C4BCF051DCD16A300E68187 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4BCF041DCD16A300E68187 /* GameViewController.swift */; };
+		0C4BCF0B1DCD862900E68187 /* GoogleWearAlertView in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCF0A1DCD862900E68187 /* GoogleWearAlertView */; };
 		5F16D4531DCD4709001CECE4 /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F16D4521DCD4709001CECE4 /* PlaylistsTableViewCell.swift */; };
 		5FE64C761DCD22F50002BFA2 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE64C751DCD22F50002BFA2 /* RankingViewController.swift */; };
 		5FE64C7A1DCD24430002BFA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE64C791DCD24430002BFA2 /* GoogleService-Info.plist */; };
@@ -29,6 +30,7 @@
 		0C4BCEFA1DCD106E00E68187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C4BCEFC1DCD106E00E68187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C4BCF041DCD16A300E68187 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		0C4BCF0A1DCD862900E68187 /* GoogleWearAlertView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GoogleWearAlertView; sourceTree = "<group>"; };
 		139E9C69F26FBD63C8C4D18A /* Pods-TrivialMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrivialMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrivialMusic/Pods-TrivialMusic.release.xcconfig"; sourceTree = "<group>"; };
 		5F16D4521DCD4709001CECE4 /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
 		5FE64C751DCD22F50002BFA2 /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				0C4BCEF21DCD106E00E68187 /* ViewController.swift */,
 				0C4BCEF41DCD106E00E68187 /* Main.storyboard */,
 				0C4BCEF71DCD106E00E68187 /* Assets.xcassets */,
+				0C4BCF0A1DCD862900E68187 /* GoogleWearAlertView */,
 				0C4BCEF91DCD106E00E68187 /* LaunchScreen.storyboard */,
 				0C4BCEFC1DCD106E00E68187 /* Info.plist */,
 				5F16D4521DCD4709001CECE4 /* PlaylistsTableViewCell.swift */,
@@ -178,6 +181,7 @@
 				5FE64C7A1DCD24430002BFA2 /* GoogleService-Info.plist in Resources */,
 				0C4BCEF81DCD106E00E68187 /* Assets.xcassets in Resources */,
 				0C4BCEF61DCD106E00E68187 /* Main.storyboard in Resources */,
+				0C4BCF0B1DCD862900E68187 /* GoogleWearAlertView in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

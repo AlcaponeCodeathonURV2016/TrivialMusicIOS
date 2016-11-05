@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
     var currentGameID : String = ""
     var currentGame : NSDictionary = [:]
     var currentRound = 0
-    
+    var currentAnswer = 0
     var player = AVPlayer()
     
     @IBOutlet weak var roundLabel: UILabel!
@@ -36,12 +36,28 @@ class GameViewController: UIViewController {
     @IBOutlet weak var secondPlayerPoints: UILabel!
     
     @IBAction func firstSongAction(_ sender: Any) {
+        checkAnswer(pos: 1)
     }
     @IBAction func secondSongAction(_ sender: Any) {
+        checkAnswer(pos: 2)
     }
     @IBAction func thirdSongAction(_ sender: Any) {
+        checkAnswer(pos: 3)
     }
     @IBAction func fourthSongAction(_ sender: Any) {
+        checkAnswer(pos: 4)
+    }
+    
+    func checkAnswer(pos:NSInteger){
+        let correctAnswer = ((((self.currentGame.object(forKey: "questions") as! NSArray)[self.currentRound])as! NSDictionary).object(forKey: "solution")as! NSDictionary).object(forKey: "name") as! String
+        let selectedAnser = ((((self.currentGame.object(forKey: "questions") as! NSArray)[self.currentRound])as! NSDictionary).object(forKey: "songs")as! NSArray)[pos] as! String
+        
+        if(correctAnswer == selectedAnser){
+//            GoogleWearAlert.showAlert("Success", .success)
+//            GoogleWearAlert.showAlert(title: "Success", .success)
+        }else{
+//            GoogleWearAlert.showAlert(title:"Error", nil, type: .error, duration: 2.0, inViewController: self)
+        }
     }
     
     
@@ -143,7 +159,7 @@ class GameViewController: UIViewController {
     
     func playerDidFinishPlaying(note: NSNotification){
         self.currentRound += 1
-        if self.currentRound < 6{
+        if self.currentRound < 5{
             updateScreen()
         }
     }
@@ -154,10 +170,15 @@ class GameViewController: UIViewController {
         
         let songs = question.object(forKey: "songs") as! NSArray
         
-        self.firstSongButton.titleLabel?.text = songs[0] as? String
-        self.secondSongButton.titleLabel?.text = songs[1] as? String
-        self.thirdSongButton.titleLabel?.text = songs[2] as? String
-        self.fourthSongButton.titleLabel?.text = songs[3] as? String
+        self.firstSongButton.setTitle(songs[0] as? String, for: UIControlState.normal)
+        self.secondSongButton.setTitle(songs[1] as? String, for: UIControlState.normal)
+        self.thirdSongButton.setTitle(songs[2] as? String, for: UIControlState.normal)
+        self.fourthSongButton.setTitle(songs[3] as? String, for: UIControlState.normal)
+        
+        self.firstSongButton.setNeedsDisplay()
+        self.secondSongButton.setNeedsDisplay()
+        self.thirdSongButton.setNeedsDisplay()
+        self.fourthSongButton.setNeedsDisplay()
             
         playSound(question.value(forKey: "previewURL") as! String)
     
