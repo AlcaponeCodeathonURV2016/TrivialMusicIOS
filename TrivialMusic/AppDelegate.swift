@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 
 var ref: FIRDatabaseReference!
+let uid = UIDevice.current.identifierForVendor?.uuidString
 
 @UIApplicationMain
 
