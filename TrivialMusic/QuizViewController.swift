@@ -55,6 +55,7 @@ class QuizViewController: UIViewController {
                 currentData.value = value! + 20
                 return FIRTransactionResult.success(withValue: currentData)
             }
+            sender.setTitleColor(UIColor.green, for: .normal)
             self.titleLabel.text = "Yeah!!!"
             ref.child("games").child(id).updateChildValues(["\(playerOID)status":"blocked"])
         
@@ -62,6 +63,7 @@ class QuizViewController: UIViewController {
 //            self.playerDidFinishPlaying(note: )
         }else{
             self.titleLabel.text = "Ouch!!! Nice try"
+            sender.setTitleColor(UIColor.red, for: .normal)
         }
         self.song1Button.isEnabled = false
         self.song2Button.isEnabled = false
@@ -99,6 +101,14 @@ class QuizViewController: UIViewController {
             
             if((self.currentGame.object(forKey: "\(self.playerID)status") as! String) == "blocked"){
                 self.titleLabel.text = "Opponent was faster!!!"
+                
+                let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
+                let correct = ((question.object(forKey: "solution") as! NSDictionary).object(forKey: "name") as! String)
+                
+                var index = find(question.object(forKey: "songs")).index(of: correct)
+                if(index ==0)
+                    self.song1Button.setTini
+                
                 self.song1Button.isEnabled = false
                 self.song2Button.isEnabled = false
                 self.song3Button.isEnabled = false
