@@ -28,10 +28,14 @@ class QuizViewController: UIViewController {
     var id : String = ""
     var player = AVPlayer()
     
+    @IBOutlet weak var coverSongImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rightScoreLabel: UILabel!
     @IBOutlet weak var leftScoreLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
+    
+    @IBOutlet weak var youLabel: UILabel!
+    @IBOutlet weak var opponentLabel: UILabel!
     
     @IBOutlet weak var song1Button: UIButton!
     @IBOutlet weak var song2Button: UIButton!
@@ -57,13 +61,34 @@ class QuizViewController: UIViewController {
             }
             sender.setTitleColor(UIColor.green, for: .normal)
             self.titleLabel.text = "Yeah!!!"
-            ref.child("games").child(id).updateChildValues(["\(playerOID)status":"blocked"])
-        
-//            player.replaceCurrentItem(with: nil)
-//            self.playerDidFinishPlaying(note: )
+            ref.child("games").child(id).updateChildValues(["status":"blocked2"])
         }else{
             self.titleLabel.text = "Ouch!!! Nice try"
             sender.setTitleColor(UIColor.red, for: .normal)
+            
+            if((self.currentGame.object(forKey: "status") as! String) == "blocked1"){
+                ref.child("games").child(id).updateChildValues(["status":"blocked2"])
+            }else{
+                ref.child("games").child(id).updateChildValues(["status":"blocked1"])
+            }
+            let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
+            let correct = ((question.object(forKey: "solution") as! NSDictionary).object(forKey: "name") as! String)
+            
+            let index = (question.object(forKey: "songs") as! NSArray).index(of: correct)
+            if(index == 0){
+                self.song1Button.setTitleColor(UIColor.orange, for: .normal)
+            }else if(index == 1){
+                self.song2Button.setTitleColor(UIColor.orange, for: .normal)
+            }else if(index == 2){
+                self.song3Button.setTitleColor(UIColor.orange, for: .normal)
+            }else if(index == 3){
+                self.song4Button.setTitleColor(UIColor.orange, for: .normal)
+            }
+            
+            self.song1Button.isEnabled = false
+            self.song2Button.isEnabled = false
+            self.song3Button.isEnabled = false
+            self.song4Button.isEnabled = false
         }
         self.song1Button.isEnabled = false
         self.song2Button.isEnabled = false
@@ -76,10 +101,7 @@ class QuizViewController: UIViewController {
             let statusString = snapshot.value as! String
             let status = GameStatus.init(rawValue: statusString)
             
-            if(status == GameStatus.waiting1){
-                print("Game Status: waiting1")
-            
-            }else if(status == GameStatus.start){
+            if(status == GameStatus.start){
                 print("Game Status: start")
                 self.start()
             }else if(status == GameStatus.finished){
@@ -99,31 +121,30 @@ class QuizViewController: UIViewController {
             let points1 = self.currentGame.object(forKey: "\(self.playerOID)points") ?? 0
             self.rightScoreLabel.text = "\(points1)"
             
-            if((self.currentGame.object(forKey: "\(self.playerID)status") as! String) == "blocked"){
-                self.titleLabel.text = "Opponent was faster!!!"
+//            if((self.currentGame.object(forKey: "\(self.playerID)status") as! String) == "blocked"){
+//                self.titleLabel.text = "Opponent was faster!!!"
+//                
+//
+//            }
+            
+            if((self.currentGame.object(forKey: "status") as! String) == "blocked2"){
+                self.coverSongImageView.isHidden = false
                 
-                let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
-                let correct = ((question.object(forKey: "solution") as! NSDictionary).object(forKey: "name") as! String)
-                
-                let index = (question.object(forKey: "songs") as! NSArray).index(of: correct)
-                if(index == 0){
-                    self.song1Button.setTitleColor(UIColor.orange, for: .normal)
-                }else if(index == 1){
-                    self.song2Button.setTitleColor(UIColor.orange, for: .normal)
-                }else if(index == 2){
-                    self.song3Button.setTitleColor(UIColor.orange, for: .normal)
-                }else if(index == 3){
-                    self.song4Button.setTitleColor(UIColor.orange, for: .normal)
-                }
-                
-                self.song1Button.isEnabled = false
-                self.song2Button.isEnabled = false
-                self.song3Button.isEnabled = false
-                self.song4Button.isEnabled = false
+                Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(QuizViewController.nextQuestion), userInfo: nil, repeats: false)
             }
         }) { (error) in print(error.localizedDescription) }
     }
     
+    func nextQuestion(){
+        self.player.replaceCurrentItem(with: nil)
+        
+        self.currentRound += 1
+        if self.currentRound < 5{
+            self.updateScreen()
+        }else{
+            self.finished()
+        }
+    }
     func getGame(completion: @escaping (_ id: String) -> Void) {
         ref.child("games").queryOrdered(byChild: "status").queryStarting(atValue: "waiting").queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
             let values = snapshot.value as! NSDictionary
@@ -170,16 +191,23 @@ class QuizViewController: UIViewController {
     }
     
     func updateScreen(){
-        ref.child("games").child(id).updateChildValues(["\(playerID)status":"ready"])
+        ref.child("games").child(id).updateChildValues(["\(playerID)status":"ready", "status":"ready"])
+        let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
+        self.coverSongImageView.downloadedFrom(link: question.value(forKey: "coverImageURL")! as! String)
         self.song1Button.isHidden = false
         self.song2Button.isHidden = false
         self.song3Button.isHidden = false
         self.song4Button.isHidden = false
         
+        self.youLabel.isHidden = false
+        self.opponentLabel.isHidden = false
+        
         self.song1Button.isEnabled = true
         self.song2Button.isEnabled = true
         self.song3Button.isEnabled = true
         self.song4Button.isEnabled = true
+        
+        self.coverSongImageView.isHidden = true
         
         self.song1Button.setTitleColor(UIColor.white, for: .normal)
         self.song2Button.setTitleColor(UIColor.white, for: .normal)
@@ -191,7 +219,6 @@ class QuizViewController: UIViewController {
         self.titleLabel.isHidden = false
         self.mainLabel.isHidden = false
         
-        let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
         self.titleLabel.text = "Round \(self.currentRound+1)"
         
         let songs = question.object(forKey: "songs") as! NSArray
@@ -279,5 +306,28 @@ class QuizViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension UIImageView {
+    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        contentMode = mode
+
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() { () -> Void in
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloadedFrom(url: url, contentMode: mode)
     }
 }

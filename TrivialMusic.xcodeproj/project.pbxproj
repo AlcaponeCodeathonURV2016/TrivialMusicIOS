@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C4BCEF11DCD106E00E68187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF01DCD106E00E68187 /* AppDelegate.swift */; };
-		0C4BCEF31DCD106E00E68187 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF21DCD106E00E68187 /* ViewController.swift */; };
 		0C4BCEF61DCD106E00E68187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF41DCD106E00E68187 /* Main.storyboard */; };
 		0C4BCEF81DCD106E00E68187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF71DCD106E00E68187 /* Assets.xcassets */; };
 		0C4BCEFB1DCD106E00E68187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4BCEF91DCD106E00E68187 /* LaunchScreen.storyboard */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		0C4BCEED1DCD106E00E68187 /* TrivialMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrivialMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4BCEF01DCD106E00E68187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C4BCEF21DCD106E00E68187 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C4BCEF51DCD106E00E68187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C4BCEF71DCD106E00E68187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C4BCEFA1DCD106E00E68187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 				5FE64C7B1DCD24E30002BFA2 /* ViewControllers */,
 				5FE64C791DCD24430002BFA2 /* GoogleService-Info.plist */,
 				0C4BCEF01DCD106E00E68187 /* AppDelegate.swift */,
-				0C4BCEF21DCD106E00E68187 /* ViewController.swift */,
 				0C4BCEF41DCD106E00E68187 /* Main.storyboard */,
 				0C4BCEF71DCD106E00E68187 /* Assets.xcassets */,
 				0C4BCEF91DCD106E00E68187 /* LaunchScreen.storyboard */,
@@ -233,7 +230,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C4BCEF31DCD106E00E68187 /* ViewController.swift in Sources */,
 				0C4BCF0D1DCD9C1700E68187 /* QuizViewController.swift in Sources */,
 				5FE64C7D1DCD25100002BFA2 /* PlaylistViewController.swift in Sources */,
 				0C4BCEF11DCD106E00E68187 /* AppDelegate.swift in Sources */,
