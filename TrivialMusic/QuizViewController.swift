@@ -128,6 +128,7 @@ class QuizViewController: UIViewController {
 //            }
             
             if((self.currentGame.object(forKey: "status") as! String) == "blocked2"){
+                
                 self.coverSongImageView.isHidden = false
                 
                 Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(QuizViewController.nextQuestion), userInfo: nil, repeats: false)
