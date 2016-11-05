@@ -81,12 +81,19 @@ class GameViewController: UIViewController {
     }
     
     func getGame(){
-        ref.child("available").child("-KVm36KKZMeBrFEf-wqM").queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as! NSArray
-            self.currentGameID = value[0] as! String
-            
-            ref.child("games").child(self.currentGameID).observeSingleEvent(of: .value, with: { (snapshot) in
-                self.currentGame = snapshot.value as! NSDictionary
+        
+            ref.child("games").observeSingleEvent(of: .value, with: { (snapshot) in
+                let games = NSArray(array:(snapshot.value as! NSDictionary).allValues)
+                let ids = NSArray(array:(snapshot.value as! NSDictionary).allKeys)
+                for i in 0...games.count-1 {
+                    let game = games[i] as! NSDictionary
+                    if (game.value(forKey: "status") as! String) == "waiting1" || (game.value(forKey: "status") as! String) == "waiting2" {
+                        self.currentGame = game
+                        self.currentGameID = ids[i] as! String
+                        break
+                    }
+                }
+                
                 let status = GameStatus.init(rawValue: self.currentGame.object(forKey: "status") as! String)
                 
                 if(status == GameStatus.waiting2){
@@ -105,11 +112,10 @@ class GameViewController: UIViewController {
                     ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.ready2.rawValue])
                     self.readyLabel.text = "Ready?"
                     self.startButton.isHidden = false;
-//                    ref.child("available").child("-KVm36KKZMeBrFEf-wqM").child(self.currentGameID).removeValue()
+                    //ref.child("available").child("-KVmIozLqC19fQcx-VXF").child(self.currentGame).removeValue()
                     // No s'eliminia
                 }
             }) { (error) in print(error.localizedDescription) }
-        }) { (error) in print(error.localizedDescription) }
     }
     
     func start(){
