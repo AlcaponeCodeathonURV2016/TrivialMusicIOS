@@ -128,8 +128,6 @@ class GameViewController: UIViewController {
                     ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.ready2.rawValue])
                     self.readyLabel.text = "Ready?"
                     self.startButton.isHidden = false;
-                    //ref.child("available").child("-KVmIozLqC19fQcx-VXF").child(self.currentGame).removeValue()
-                    // No s'eliminia
                 }
             }) { (error) in print(error.localizedDescription) }
     }
