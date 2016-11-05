@@ -162,10 +162,10 @@ class QuizViewController: UIViewController {
     }
     
     func start(){
-//        self.showCountdown()
+        self.showCountdown()
         
-    
-        updateScreen()
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(QuizViewController.updateScreen), userInfo: nil, repeats: false)
+//        updateScreen()
         
     }
     
