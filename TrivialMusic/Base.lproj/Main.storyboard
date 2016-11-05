@@ -143,7 +143,7 @@
                                     <action selector="firstSongAction:" destination="Of2-KJ-kgw" eventType="touchUpInside" id="1Ah-g4-unP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pau Martin - 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xz-EC-a5J">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pau Martin - 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xz-EC-a5J">
                                 <rect key="frame" x="16" y="600" width="343" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="1d1-nS-1MC"/>
@@ -153,7 +153,7 @@
                                 <color key="textColor" red="0.9959825873374939" green="0.99621325731277466" blue="0.99187678098678589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oscar Blanco - 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eg3-cv-ACE">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oscar Blanco - 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eg3-cv-ACE">
                                 <rect key="frame" x="14" y="600" width="347" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="886-zD-kUE"/>
@@ -163,7 +163,7 @@
                                 <color key="textColor" red="0.99195677042007446" green="0.99622899293899536" blue="0.99192315340042114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkt-04-Nym">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkt-04-Nym">
                                 <rect key="frame" x="0.0" y="42" width="375" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="67" id="8Dv-oC-h1H"/>
@@ -231,16 +231,16 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDT-NM-kah">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for opponent..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDT-NM-kah">
                                 <rect key="frame" x="16" y="150" width="343" height="103"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="103" id="AC3-5m-yey"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="55"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="43"/>
                                 <color key="textColor" red="0.9959825873374939" green="0.99621325731277466" blue="0.99187678098678589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWZ-Rx-otM">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWZ-Rx-otM">
                                 <rect key="frame" x="0.0" y="373" width="375" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="gjR-pg-qM1"/>
@@ -292,6 +292,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="W0o-v3-rgb" id="Pgc-pB-rfn"/>
                         <outlet property="counterLabel" destination="OSB-9n-hyh" id="64J-16-daE"/>
                         <outlet property="firstPlayerPoints" destination="Eg3-cv-ACE" id="kHL-6Y-Vxz"/>
                         <outlet property="firstSongButton" destination="NgT-B8-DP5" id="pUA-6r-IjG"/>
@@ -300,6 +301,7 @@
                         <outlet property="roundLabel" destination="Xkt-04-Nym" id="HRv-SI-IeY"/>
                         <outlet property="secondPlayerPoints" destination="7xz-EC-a5J" id="j4v-2g-aZS"/>
                         <outlet property="secondSongButton" destination="sEq-yY-IOJ" id="5ZF-Z3-gDj"/>
+                        <outlet property="startButton" destination="ZWZ-Rx-otM" id="78z-As-Oy9"/>
                         <outlet property="thirdSongButton" destination="g5t-cG-mqJ" id="zvg-cN-LrR"/>
                     </connections>
                 </viewController>

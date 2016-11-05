@@ -26,6 +26,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var thirdSongButton: UIButton!
     @IBOutlet weak var fourthSongButton: UIButton!
     
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var firstPlayerPoints: UILabel!
     @IBOutlet weak var secondPlayerPoints: UILabel!
     
@@ -43,6 +46,18 @@ class GameViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func waitForStart(){
+        ref.child("games").child(self.currentGameID).observe(.value, with: { (snapshot) in
+            self.currentGame = snapshot.value as! NSDictionary
+            let status = GameStatus.init(rawValue: self.currentGame.object(forKey: "status") as! String)
+            
+            if(status == GameStatus.start){
+                print("strat")
+                self.start()
+            }
+        }) { (error) in print(error.localizedDescription) }
+    }
+    
     @IBAction func readyAction(_ sender: Any) {
         if currentGameID != "" {
         ref.child("games").child(self.currentGameID).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -51,17 +66,12 @@ class GameViewController: UIViewController {
             
             if(status == GameStatus.ready2){
                 ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.ready1.rawValue])
+                
+                self.waitForStart()
             }else if (status == GameStatus.ready1){
                 ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.start.rawValue])
                 
-                ref.child("games").child(self.currentGameID).observe(.value, with: { (snapshot) in
-                    self.currentGame = snapshot.value as! NSDictionary
-                    let status = GameStatus.init(rawValue: self.currentGame.object(forKey: "status") as! String)
-                    
-                    if(status == GameStatus.start){
-                        self.start()
-                    }
-                }) { (error) in print(error.localizedDescription) }
+                self.waitForStart()
             }
         }) { (error) in print(error.localizedDescription) }
         }
@@ -78,8 +88,20 @@ class GameViewController: UIViewController {
                 
                 if(status == GameStatus.waiting2){
                     ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.waiting1.rawValue])
+                    
+                    ref.child("games").child(self.currentGameID).observe(.value, with: { (snapshot) in
+                        self.currentGame = snapshot.value as! NSDictionary
+                        let status = GameStatus.init(rawValue: self.currentGame.object(forKey: "status") as! String)
+                        
+                        if(status == GameStatus.ready2){
+                            self.readyLabel.text = "Ready?"
+                            self.startButton.isHidden = false;
+                        }
+                    }) { (error) in print(error.localizedDescription) }
                 }else if (status == GameStatus.waiting1){
                     ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.ready2.rawValue])
+                    self.readyLabel.text = "Ready?"
+                    self.startButton.isHidden = false;
                     //ref.child("available").child("-KVkmH_2UXmctypoELNF").child(self.currentGame).removeValue()
                     // No s'eliminia
                 }
@@ -88,7 +110,23 @@ class GameViewController: UIViewController {
     }
     
     func start(){
+        self.firstSongButton.isHidden = false
+        self.secondSongButton.isHidden = false
+        self.thirdSongButton.isHidden = false
+        self.fourthSongButton.isHidden = false
+        
+        self.startButton.isHidden = true
     
+        self.readyLabel.isHidden = true
+        
+        self.roundLabel.isHidden = false
+        
+        self.firstPlayerPoints.isHidden = false
+        self.secondPlayerPoints.isHidden = false
+        
+        self.counterLabel.isHidden = false
+        
+        self.backButton.isHidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
