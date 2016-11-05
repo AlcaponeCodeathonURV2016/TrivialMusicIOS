@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
     }
     
     func getGame(){
-        ref.child("available").child("-KVlWmp99cJWt6c8Ahpr").queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("available").child("-KVm36KKZMeBrFEf-wqM").queryOrderedByKey().queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as! NSArray
             self.currentGameID = value[0] as! String
             
@@ -105,7 +105,7 @@ class GameViewController: UIViewController {
                     ref.child("games").child(self.currentGameID).updateChildValues(["status": GameStatus.ready2.rawValue])
                     self.readyLabel.text = "Ready?"
                     self.startButton.isHidden = false;
-                    //ref.child("available").child("-KVkmH_2UXmctypoELNF").child(self.currentGame).removeValue()
+//                    ref.child("available").child("-KVm36KKZMeBrFEf-wqM").child(self.currentGameID).removeValue()
                     // No s'eliminia
                 }
             }) { (error) in print(error.localizedDescription) }

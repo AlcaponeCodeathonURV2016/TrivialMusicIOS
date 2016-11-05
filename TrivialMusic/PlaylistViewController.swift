@@ -13,7 +13,7 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     var titles = ["Featured", "Top Hits", "Pop", "Latin", "Dance", "Rock", "Chill", "Electronic", "Classical"]
-    var colors = [0x2ecc71, 0xe67e22, 0x8e44ad, 0x95a5a6, 0x1abc9c, 0xf39c12, 0x34495e, 0x27ae60, 0x3498db]
+    var colors = [0x2ecc71, 0xe67e22, 0x8e44ad, 0x95a5a6, 0x3498db, 0x27ae60, 0x1abc9c, 0xf39c12, 0x34495e]
     
     override func viewDidLoad() {
         super.viewDidLoad()
