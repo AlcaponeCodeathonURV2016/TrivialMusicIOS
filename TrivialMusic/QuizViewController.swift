@@ -184,11 +184,13 @@ class QuizViewController: UIViewController {
         self.song3Button.isEnabled = true
         self.song4Button.isEnabled = true
         
-        playSound(question.value(forKey: "previewURL") as! String)
+        playSound(url: question.value(forKey: "previewURL")! as! String)
+      
         
     }
     
-    func playSound(_ url:String) {
+    func playSound(
+        url:String) {
         let playerItem = AVPlayerItem( url:NSURL( string:url ) as! URL )
         player = AVPlayer(playerItem:playerItem)
         
