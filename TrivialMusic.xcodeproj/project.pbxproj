@@ -146,7 +146,7 @@
 				TargetAttributes = {
 					0C4BCEEC1DCD106E00E68187 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = AS6VTCGY5U;
+						DevelopmentTeam = 7XPNZVMTQ2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -285,6 +285,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -337,6 +338,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -368,7 +370,7 @@
 			baseConfigurationReference = A958563C4757BA6C473C00DB /* Pods-TrivialMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AS6VTCGY5U;
+				DEVELOPMENT_TEAM = 7XPNZVMTQ2;
 				INFOPLIST_FILE = TrivialMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alcapone.TrivialMusic;
@@ -382,7 +384,7 @@
 			baseConfigurationReference = 139E9C69F26FBD63C8C4D18A /* Pods-TrivialMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AS6VTCGY5U;
+				DEVELOPMENT_TEAM = 7XPNZVMTQ2;
 				INFOPLIST_FILE = TrivialMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alcapone.TrivialMusic;
