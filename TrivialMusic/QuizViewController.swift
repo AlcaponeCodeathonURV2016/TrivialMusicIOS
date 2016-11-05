@@ -27,6 +27,7 @@ class QuizViewController: UIViewController {
     var playerOID : String = ""
     var id : String = ""
     var player = AVPlayer()
+    var answered = false
     
     @IBOutlet weak var coverSongImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -46,6 +47,8 @@ class QuizViewController: UIViewController {
         let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
         let answer = (question.object(forKey: "songs") as! NSArray)[sender.tag-1] as! String
         let correct = ((question.object(forKey: "solution") as! NSDictionary).object(forKey: "name") as! String)
+        
+        self.answered = true
         
         if(correct == answer){
             print("Correct answer")
@@ -128,7 +131,28 @@ class QuizViewController: UIViewController {
 //            }
             
             if((self.currentGame.object(forKey: "status") as! String) == "blocked2"){
+                if(!self.answered){
+                    self.titleLabel.text = "You opponent was faster!!!"
+                    
+                    let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
+                    let correct = ((question.object(forKey: "solution") as! NSDictionary).object(forKey: "name") as! String)
                 
+                    let index = (question.object(forKey: "songs") as! NSArray).index(of: correct)
+                    if(index == 0){
+                        self.song1Button.setTitleColor(UIColor.orange, for: .normal)
+                    }else if(index == 1){
+                        self.song2Button.setTitleColor(UIColor.orange, for: .normal)
+                    }else if(index == 2){
+                        self.song3Button.setTitleColor(UIColor.orange, for: .normal)
+                    }else if(index == 3){
+                        self.song4Button.setTitleColor(UIColor.orange, for: .normal)
+                    }
+                
+                    self.song1Button.isEnabled = false
+                    self.song2Button.isEnabled = false
+                    self.song3Button.isEnabled = false
+                    self.song4Button.isEnabled = false
+                }
                 self.coverSongImageView.isHidden = false
                 
                 Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(QuizViewController.nextQuestion), userInfo: nil, repeats: false)
@@ -207,6 +231,8 @@ class QuizViewController: UIViewController {
         self.song2Button.isEnabled = true
         self.song3Button.isEnabled = true
         self.song4Button.isEnabled = true
+        
+        self.answered = false
         
         self.coverSongImageView.isHidden = true
         
