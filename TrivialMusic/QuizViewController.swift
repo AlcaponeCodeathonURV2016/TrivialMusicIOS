@@ -56,15 +56,17 @@ class QuizViewController: UIViewController {
                 return FIRTransactionResult.success(withValue: currentData)
             }
             self.titleLabel.text = "Yeah!!!"
-            self.song1Button.isEnabled = false
-            self.song2Button.isEnabled = false
-            self.song3Button.isEnabled = false
-            self.song4Button.isEnabled = false
+            ref.child("games").child(id).updateChildValues(["\(playerOID)status":"blocked"])
+        
 //            player.replaceCurrentItem(with: nil)
 //            self.playerDidFinishPlaying(note: )
         }else{
-            self.titleLabel.text = "Ouch!!! Try again"
+            self.titleLabel.text = "Ouch!!! Nice try"
         }
+        self.song1Button.isEnabled = false
+        self.song2Button.isEnabled = false
+        self.song3Button.isEnabled = false
+        self.song4Button.isEnabled = false
     }
     
     func setupListener(id:String){
@@ -90,10 +92,18 @@ class QuizViewController: UIViewController {
             let game = snapshot.value as! NSDictionary
             self.currentGame = game
             
-            let points = self.currentGame.object(forKey: "\(self.playerID)points")!
+            let points = self.currentGame.object(forKey: "\(self.playerID)points") ?? 0
             self.leftScoreLabel.text = "\(points)"
-            let points1 = self.currentGame.object(forKey: "\(self.playerOID)points")!
+            let points1 = self.currentGame.object(forKey: "\(self.playerOID)points") ?? 0
             self.rightScoreLabel.text = "\(points1)"
+            
+            if((self.currentGame.object(forKey: "\(self.playerID)status") as! String) == "blocked"){
+                self.titleLabel.text = "Opponent was faster!!!"
+                self.song1Button.isEnabled = false
+                self.song2Button.isEnabled = false
+                self.song3Button.isEnabled = false
+                self.song4Button.isEnabled = false
+            }
         }) { (error) in print(error.localizedDescription) }
     }
     
@@ -106,11 +116,11 @@ class QuizViewController: UIViewController {
             self.currentGame = game
             
             if(GameStatus.init(rawValue: game.object(forKey: "status") as! String) == GameStatus.waiting2){
-                ref.child("games").child(id).updateChildValues(["status": GameStatus.waiting1.rawValue, "player1": uid!, "player1points": 0])
+                ref.child("games").child(id).updateChildValues(["status": GameStatus.waiting1.rawValue, "player1": uid!, "player1points": 0, "player1status": "ready"])
                 self.playerID = "player1"
                 self.playerOID = "player2"
             }else{
-                ref.child("games").child(id).updateChildValues(["status": GameStatus.start.rawValue, "player2": uid!, "player2points": 0])
+                ref.child("games").child(id).updateChildValues(["status": GameStatus.start.rawValue, "player2": uid!, "player2points": 0, "player2status": "ready"])
                 self.playerID = "player2"
                 self.playerOID = "player1"
             }
@@ -143,6 +153,7 @@ class QuizViewController: UIViewController {
     }
     
     func updateScreen(){
+        ref.child("games").child(id).updateChildValues(["\(playerID)status":"ready"])
         self.song1Button.isHidden = false
         self.song2Button.isHidden = false
         self.song3Button.isHidden = false
@@ -198,13 +209,26 @@ class QuizViewController: UIViewController {
         self.currentRound += 1
         if self.currentRound < 5{
             updateScreen()
-        }
-        else{
+        }else{
             finished()
         }
     }
     
     func finished(){
+        var title = "You won!!!"
+        if((self.currentGame.object(forKey: "\(self.playerID)points") as! NSInteger) < (self.currentGame.object(forKey: "\(self.playerOID)points") as! NSInteger)){
+            title = "You lose!!!"
+        }else if((self.currentGame.object(forKey: "\(self.playerID)points") as! NSInteger) == (self.currentGame.object(forKey: "\(self.playerOID)points") as! NSInteger)){
+            title = "Draw"
+        }
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+            action in
+            
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
