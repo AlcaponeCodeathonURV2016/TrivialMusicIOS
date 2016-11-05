@@ -105,9 +105,16 @@ class QuizViewController: UIViewController {
                 let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
                 let correct = ((question.object(forKey: "solution") as! NSDictionary).object(forKey: "name") as! String)
                 
-                var index = find(question.object(forKey: "songs")).index(of: correct)
-                if(index ==0)
-                    self.song1Button.setTini
+                let index = (question.object(forKey: "songs") as! NSArray).index(of: correct)
+                if(index == 0){
+                    self.song1Button.setTitleColor(UIColor.orange, for: .normal)
+                }else if(index == 1){
+                    self.song2Button.setTitleColor(UIColor.orange, for: .normal)
+                }else if(index == 2){
+                    self.song3Button.setTitleColor(UIColor.orange, for: .normal)
+                }else if(index == 3){
+                    self.song4Button.setTitleColor(UIColor.orange, for: .normal)
+                }
                 
                 self.song1Button.isEnabled = false
                 self.song2Button.isEnabled = false
@@ -174,6 +181,11 @@ class QuizViewController: UIViewController {
         self.song3Button.isEnabled = true
         self.song4Button.isEnabled = true
         
+        self.song1Button.setTitleColor(UIColor.white, for: .normal)
+        self.song2Button.setTitleColor(UIColor.white, for: .normal)
+        self.song3Button.setTitleColor(UIColor.white, for: .normal)
+        self.song4Button.setTitleColor(UIColor.white, for: .normal)
+    
         self.rightScoreLabel.isHidden = false
         self.leftScoreLabel.isHidden = false
         self.titleLabel.isHidden = false
