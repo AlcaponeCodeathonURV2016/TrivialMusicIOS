@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum GameStatus: String {
     case waiting1, waiting2, ready1, ready2, start
@@ -16,6 +17,8 @@ class GameViewController: UIViewController {
     var currentGameID : String = ""
     var currentGame : NSDictionary = [:]
     var currentRound = 0
+    
+    var player = AVPlayer()
     
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var readyLabel: UILabel!
@@ -127,6 +130,8 @@ class GameViewController: UIViewController {
         self.counterLabel.isHidden = false
         
         self.backButton.isHidden = true
+        
+        playSound(((currentGame.value(forKey: "questions") as! NSArray)[currentRound] as! NSDictionary).value(forKey: "previewURL") as! String)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,15 +151,11 @@ class GameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func playSound(_ url:String) {
+        let playerItem = AVPlayerItem( url:NSURL( string:url ) as! URL )
+        player = AVPlayer(playerItem:playerItem)
+        player.rate = 1.0;
+        player.play()
     }
-    */
 
 }
