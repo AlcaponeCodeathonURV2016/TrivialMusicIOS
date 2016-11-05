@@ -131,17 +131,43 @@ class GameViewController: UIViewController {
         
         self.backButton.isHidden = true
         
-        playSound(((currentGame.value(forKey: "questions") as! NSArray)[currentRound] as! NSDictionary).value(forKey: "previewURL") as! String)
+        updateScreen()
+        
     }
+    
+    func playerDidFinishPlaying(note: NSNotification){
+        self.currentRound += 1
+        if self.currentRound < 6{
+            updateScreen()
+        }
+    }
+    
+    func updateScreen(){
+        let question = (self.currentGame.value(forKey: "questions") as! NSArray)[self.currentRound] as! NSDictionary
+        self.roundLabel.text = "Round \(self.currentRound+1)"
+        
+        let songs = question.object(forKey: "songs") as! NSArray
+        
+        self.firstSongButton.titleLabel?.text = songs[0] as? String
+        self.secondSongButton.titleLabel?.text = songs[1] as? String
+        self.thirdSongButton.titleLabel?.text = songs[2] as? String
+        self.fourthSongButton.titleLabel?.text = songs[3] as? String
+            
+        playSound(question.value(forKey: "previewURL") as! String)
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector:#selector(GameViewController.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+
         getGame()
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    deinit {
+        NotificationCenter.default.removeObserver(self)
         
         ref.removeAllObservers()
     }
@@ -154,8 +180,19 @@ class GameViewController: UIViewController {
     func playSound(_ url:String) {
         let playerItem = AVPlayerItem( url:NSURL( string:url ) as! URL )
         player = AVPlayer(playerItem:playerItem)
+        
         player.rate = 1.0;
         player.play()
+        
+        let duration = CMTimeGetSeconds((player.currentItem?.asset.duration)!)
+        
+        player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 100), queue: DispatchQueue.main) {
+            [unowned self] time in
+            let timeString = String(format: "%02.f", duration - CMTimeGetSeconds(time))
+            
+            self.counterLabel.text = timeString
+        }
+        
     }
 
 }
